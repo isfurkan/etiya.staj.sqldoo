@@ -43,7 +43,7 @@ export class MenuComponent implements OnInit {
                 expanded: true, separator: true,
                 items: [
                     {
-                        label: 'Project', command: (event) => {
+                        label: 'Cars', command: (event) => {
                             let tt = new Tab();
                             tt.menuId = 1;
                             tt.menuName = event.item.label;
@@ -55,7 +55,7 @@ export class MenuComponent implements OnInit {
                         }
                     },
                     {
-                        label: 'Plcy Rule', command: (event) => {
+                        label: 'Computers', command: (event) => {
                             let ttt = new Tab();
                             ttt.menuId = 2;
                             ttt.menuName = event.item.label;
@@ -67,7 +67,7 @@ export class MenuComponent implements OnInit {
                         }
                     },
                     {
-                        label: 'Prod', command: (event) => {
+                        label: 'Teams', command: (event) => {
                             let ttt = new Tab();
                             ttt.menuId = 3;
                             ttt.menuName = event.item.label;
@@ -78,30 +78,9 @@ export class MenuComponent implements OnInit {
 
                         }
                     },
-                    {
-                        label: 'Prod Rel', command: (event) => {
-
-                            var t = "";
-                            var o = event.item;
-                            for (var q in o) t += o[q] instanceof Function ? q + " = function{}\n" : q + " = " + o[q] + "\n";
-
-                            alert(t);
 
 
-
-                            let ttt = new Tab();
-                            ttt.menuId = 4;
-                            ttt.menuName = event.item.label;
-                            ttt.content = "Detail of " + event.item.label;
-                            ttt.isClosable = true;
-                            ttt.isSelected = true;
-                            this.tabpanelService.addToTabList(ttt);
-
-                        }
-                    },
-
-
-                    { label: 'Open' },
+                    { label: 'Cities' },
                     { separator: true },
                     { label: 'Sub Menu Folder' ,items: [
                             {label: 'Sub Menu 1', icon: 'fa-mail-forward'},
@@ -159,6 +138,13 @@ export class MenuComponent implements OnInit {
         
         ];
 
+    
+
 
     }
 }
+
+
+
+
+

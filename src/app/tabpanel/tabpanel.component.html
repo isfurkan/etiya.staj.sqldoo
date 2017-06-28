@@ -5,9 +5,32 @@
         {{tab.content}}
 
 
+
+        <div *ngIf="!tab.isClosable">
+
+            <button pButton type="button" label="Click"></button>
+        </div>
+
+
+        <div *ngIf="tab.isClosable">
+            <div>
+                <app-grid></app-grid>
+            </div>
+        </div>
+
+
+
+        <!--
+<label>Yeni Menü Adı: <input #newMenuName /></label>
+<button (click)="addHero(newHeroName.value); newHeroName.value=''">Menü Ekle</button>
+
+<p class="error" *ngIf="errorMessage">{{errorMessage}}</p>
+
+
         <p-fieldset legend="Arama Kriterleri">
             Buraya dinamik fieldlar gelecek
         </p-fieldset>
+        
 
         <p-toolbar>
 
@@ -18,7 +41,6 @@
 
                 <i class="fa fa-bars"></i>
 
-                <!--<p-splitButton label="Save" icon="fa-check" [model]="items"></p-splitButton>-->
             </div>
 
             <div class="ui-toolbar-group-right">
@@ -29,10 +51,7 @@
             </div>
         </p-toolbar>
 
-        <div>
-           <app-grid></app-grid>
-        </div>
-
+-->
 
     </p-tabPanel>
 

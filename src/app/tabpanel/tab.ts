@@ -5,5 +5,4 @@ export class Tab {
     isSelected:boolean;
     isClosable:boolean;
 
-
 }
