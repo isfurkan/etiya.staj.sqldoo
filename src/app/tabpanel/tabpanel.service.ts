@@ -115,7 +115,7 @@ extractId(personData:any){
         TAB_LIST[index].isSelected=true;
       }else{
         
-        //TAB_LIST[index-1].isSelected=true;
+        TAB_LIST[index-1].isSelected=true;
         var selectedTab = TAB_LIST[index-1];
         selectedTab.isSelected=true;
         console.log("index : "+index+" için yeni selected tab "+selectedTab.menuName +" oldu");
@@ -126,8 +126,8 @@ extractId(personData:any){
     
   }
    public refreshGrid( menuId:number): any[] {
-    var index=TAB_LIST[menuId];
-      if(index.menuId == 1){
+    var aydi=menuId;
+      if(aydi == 1){
                 this.dynamicColumns = [
             { field: 'vin', header: 'Vin' },
             { field: 'year', header: 'Year' },
@@ -137,7 +137,7 @@ extractId(personData:any){
         ];
 
 
-      }else if(index.menuId == 2){
+      }else if(aydi == 2){
                 this.dynamicColumns = [
             { field: 'vin', header: 'dsfsdf' },
             { field: 'year', header: 'Ysdfdsfear' },
