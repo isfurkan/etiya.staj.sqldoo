@@ -3,7 +3,7 @@
     <p-tabPanel *ngFor="let tab of tabs" header="{{tab.menuName}}" [selected]="tab.isSelected" [closable]="tab.isClosable">
 
         {{tab.content}}
-
+        {{tab.menuId}}
 
 
         <div *ngIf="!tab.isClosable">
@@ -13,8 +13,17 @@
 
 
         <div *ngIf="tab.isClosable">
+
             <div>
-                <app-grid></app-grid>
+
+                <button pButton type="button"  (click)="refreshGrid(tab.menuId)" label="Refresh"></button>
+            </div>
+
+            <div>
+
+                <p-dataTable [value]="cars">
+                    <p-column *ngFor="let col of cols" [field]="col.field" [header]="col.header"></p-column>
+                </p-dataTable>
             </div>
         </div>
 

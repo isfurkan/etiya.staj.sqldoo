@@ -8,7 +8,6 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
-import { GridComponent } from './grid/grid.component';
 
 import { TabpanelComponent } from './tabpanel/tabpanel.component';
 import { TabpanelService} from "./tabpanel/tabpanel.service";
@@ -42,7 +41,6 @@ const appRoutes: Routes = [
     AppComponent,
     MenuComponent,
     TabpanelComponent,
-    GridComponent
   ],
   imports: [
     BrowserModule,
