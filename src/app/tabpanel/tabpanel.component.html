@@ -1,4 +1,4 @@
-<p-tabView (onClose)="onTabClose($event)" (onChange)="onTabChange($event)">
+<p-tabView  [controlClose]="true" (onClose)="onTabClose($event)"(onChange)="onTabChange($event)">
 
     <p-tabPanel *ngFor="let tab of tabs" header="{{tab.menuName}}" [selected]="tab.isSelected" [closable]="tab.isClosable">
 

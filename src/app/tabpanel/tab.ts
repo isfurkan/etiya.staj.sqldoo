@@ -4,5 +4,6 @@ export class Tab {
     content: string;
     isSelected:boolean;
     isClosable:boolean;
+    isClick:boolean;
 
 }
