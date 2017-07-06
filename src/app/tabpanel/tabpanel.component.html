@@ -1,9 +1,8 @@
-<p-tabView  [controlClose]="true" (onClose)="onTabClose($event)"(onChange)="onTabChange($event)">
+<p-tabView [controlClose]="true" (onClose)="onTabClose($event)" (onChange)="onTabChange($event)">
 
     <p-tabPanel *ngFor="let tab of tabs" header="{{tab.menuName}}" [selected]="tab.isSelected" [closable]="tab.isClosable">
 
-        {{tab.content}}
-        {{tab.menuId}}
+        {{tab.content}} {{tab.menuId}}
 
 
         <div *ngIf="!tab.isClosable">
@@ -16,7 +15,7 @@
 
             <div>
 
-                <button pButton type="button"  (click)="refreshGrid(tab.menuId)" label="Refresh"></button>
+                <button pButton type="button" (click)="refreshGrid(tab.menuId)" label="Refresh"></button>
             </div>
 
             <div>
@@ -26,6 +25,8 @@
                 </p-dataTable>
             </div>
         </div>
+
+
 
 
 

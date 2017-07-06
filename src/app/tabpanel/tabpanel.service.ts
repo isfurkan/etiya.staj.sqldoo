@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Tab } from "./tab";
 import { TAB_LIST } from "./tablist";
 import { Http, Response } from '@angular/http';
-
+import { DataTableModule, SharedModule } from 'primeng/primeng';
 import { Car } from '../domain/car';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
@@ -19,17 +19,20 @@ export class TabpanelService {
   private baseUrl: string = 'https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json';
   constructor(private http: Http) {
 
-    ;
+
   }
 
   getSmallCars() {
 
+    return this.http.get(this.baseUrl)
+
+      .toPromise()
+      .then(res => <Car[]>res.json().data)
+      .then(data => { return data; });
+
   }
-  getHeaders() {
-    let headers = new Headers();
-    headers.append('Accept', 'application/json');
-    return headers;
-  }
+
+
 
 
   /*mapCar(response:Response): Car[]{
@@ -48,10 +51,7 @@ export class TabpanelService {
    return araba;
  }
  */
-  extractId(personData: any) {
-    let extractedId = personData.url.replace('https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json', '').replace('/', '');
-    return parseInt(extractedId);
-  }
+
   /* return this.http.get('https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json')
    .map(response=>response.json())*/
 
@@ -110,10 +110,11 @@ export class TabpanelService {
     var dumy = TAB_LIST[index];
     if (deletedTab.isSelected) {
       // var selectedTab2=TAB_LIST[index-1];
-      // selectedTab2.isSelected=false;
+      // selectedTab2.isSelected=false;o
       console.log("TAB_LIST length : " + TAB_LIST.length);
       TAB_LIST[index - 1].isSelected = true;
       TAB_LIST.splice(index, 1);
+      console.log("TAB_LIST length : " + TAB_LIST.length);
     }
     else {
 
@@ -121,9 +122,10 @@ export class TabpanelService {
       // index=index-1;
       //  var selectedTab = TAB_LIST[index-1];
       //  selectedTab.isSelected=true;
-
+      console.log("TAB_LIST length : " + TAB_LIST.length);
       dumy.isSelected = true;
       TAB_LIST.splice(index, 1);
+      console.log("TAB_LIST length : " + TAB_LIST.length);
       //  console.log("index : "+index+" için yeni selected tab "+selectedTab.menuName +" oldu");
     }
   };

@@ -31,6 +31,14 @@ export class TabpanelComponent implements OnInit {
     dashbord.content = 'Selam bebek';
 
     this.tabpanelService.addToTabList(dashbord);
+    this.tabpanelService.getSmallCars().then(cars => this.cars = cars);
+        
+        this.cols = [
+            {field: 'vin', header: 'Vin'},
+            {field: 'year', header: 'Year'},
+            {field: 'brand', header: 'Brand'},
+            {field: 'color', header: 'Color'}
+        ];
     //this.tabs = this.tabpanelService.getTabList();
   }
 
@@ -38,32 +46,119 @@ export class TabpanelComponent implements OnInit {
     //this.onTabChange(event);
     this.tabpanelService.removeByIndexId(event.index);
     console.log("kapatıyoruz" + event.index);
-  // 
-    
+    // 
+
   }
 
   onTabChange(event) {
-    console.log("index = "+event.index);
-    
-    var keepGoing=true;
+    console.log("index = " + event.index);
+    var sayi = 0;
+    var ct=0;
+    var keepGoing = true;
     TAB_LIST.forEach(element => {
-      if(keepGoing){
-        var simdiki=TAB_LIST[event.index];
-      if (element.isSelected){
-        TAB_LIST[element.menuId].isSelected=false;
-        console.log("element id: "+element.menuId);
-        simdiki.isSelected=true;  
-        this.refreshGrid(simdiki.menuId);
-        console.log("önceki menu id:"+element.menuId + " "+ element.menuName);
-        console.log("şimdiki menu id: "+ simdiki.menuId + " " + simdiki.menuName);
-        keepGoing=false;
+      if (keepGoing) {
+        var simdiki = TAB_LIST[event.index];
+ 
+        if (element.isSelected) {
+          if (keepGoing) {
+            var IND: number[] = [];
+            for (var j = 0; j <= TAB_LIST.length - 1; j++) {
+              IND[j] = j;
+              console.log(IND[j]);
+            }var k = simdiki.menuId;
+           // for (var k = simdiki.menuId; k <= TAB_LIST.length-1; k++) {
+             var deneme;
+              console.log(k);
+              for (var i = 1; i <= TAB_LIST.length-1 ; i++) {
+                if (k == IND[i]) {
+                  var second = true;
+                  console.log(k + "için index arrayinde" + IND[i] + " geliyor => bulundu" + second);
+                  //k++;
+                  ct=ct+1;
+                  break;
+                }
+                else {
+                  second = false;
+                  console.log(k + "için index arrayinde" + IND[i] + "geliyor => bulunamadı");
+                sayi++;
+                
+              }
+             // } 
+                
+                }
+                
+                console.log(ct + " <<- ct & sayi ->> " + sayi +" i= " +i);
+                
+                if(ct+sayi==k){
+                  sayi=0;
+              console.log("sayii:  "+ sayi);
+            }
+            console.log("element id : " + element.menuId);
+            if (sayi==0) {
+              if (element.menuId == 0) {
+                var aaa = element.menuId;
+                TAB_LIST[aaa].isSelected = false;
+                simdiki.isSelected = true;
+                this.refreshGrid(simdiki.menuId);
+                keepGoing = false;
+                console.log("önceki menu id:" + element.menuId + " " + element.menuName);
+                console.log("şimdiki menu id: " + simdiki.menuId + " " + simdiki.menuName);
+              } else if (sayi == TAB_LIST.length) {
+                var bbb = TAB_LIST[sayi - 1];
+                bbb.isSelected = false;
+                simdiki.isSelected = true;
+                this.refreshGrid(simdiki.menuId);
+                keepGoing = false;
+                console.log("önceki menu id:" + element.menuId + " " + element.menuName);
+                console.log("şimdiki menu id: " + simdiki.menuId + " " + simdiki.menuName);
+              } else {
+                var aaa = element.menuId - 1;
+                TAB_LIST[aaa].isSelected = false;
+                simdiki.isSelected = true;
+                this.refreshGrid(simdiki.menuId);
+                keepGoing = false;
+                console.log("önceki menu id:" + element.menuId + " " + element.menuName);
+                console.log("şimdiki menu id: " + simdiki.menuId + " " + simdiki.menuName);
+              }
+            }
+            else {
+              console.log("element id: " + element.menuId);
+              TAB_LIST[element.menuId].isSelected = false;
+              simdiki.isSelected = true;
+              this.refreshGrid(simdiki.menuId);
+              console.log("önceki menu id:" + element.menuId + " " + element.menuName);
+              console.log("şimdiki menu id: " + simdiki.menuId + " " + simdiki.menuName);
+              keepGoing = false;
+            }
+          }
+        }
+        /* console.log("element id: "+element.menuId);
+         if(TAB_LIST.length==element.menuId){
+           var aaa=element.menuId-1;
+           console.log("element aaa id: "+aaa);
+         TAB_LIST[aaa].isSelected=false;
+         simdiki.isSelected=true;  
+         this.refreshGrid(simdiki.menuId);
+         console.log("önceki menu id:"+element.menuId + " "+ element.menuName);
+         console.log("şimdiki menu id: "+ simdiki.menuId + " " + simdiki.menuName);
+         keepGoing=false;
+         }else{
+         console.log("element id: "+element.menuId);
+         TAB_LIST[element.menuId].isSelected=false;
+         simdiki.isSelected=true;  
+         this.refreshGrid(simdiki.menuId);
+         console.log("önceki menu id:"+element.menuId + " "+ element.menuName);
+         console.log("şimdiki menu id: "+ simdiki.menuId + " " + simdiki.menuName);
+         keepGoing=false;
+         }
+       }
+       else
+       console.log("SEÇİLİ MENÜ BULUNAMADI")
+     }*/
       }
-      else
-      console.log("SEÇİLİ MENÜ BULUNAMADI")
-    }
     });
-    
-    
+
+
     /*
         var t = "";
         var o = event;
