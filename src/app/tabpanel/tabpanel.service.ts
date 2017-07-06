@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Tab } from "./tab";
 import { TAB_LIST } from "./tablist";
 import { Http, Response } from '@angular/http';
-import { DataTableModule, SharedModule } from 'primeng/primeng';
+
 import { Car } from '../domain/car';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
@@ -12,6 +12,18 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
+
+export class CarService {
+  dynamicColumns: any[];
+  loadedData: {};
+  private baseUrl: string = 'https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json';
+  constructor(private http: Http) {
+
+    ;
+  }
+}
+
+
 @Injectable()
 export class TabpanelService {
   dynamicColumns: any[];
@@ -19,20 +31,23 @@ export class TabpanelService {
   private baseUrl: string = 'https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json';
   constructor(private http: Http) {
 
-
+    ;
   }
+  
 
   getSmallCars() {
-
-    return this.http.get(this.baseUrl)
-
-      .toPromise()
-      .then(res => <Car[]>res.json().data)
-      .then(data => { return data; });
+    return this.http.get('https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json')
+                    .toPromise()
+                    .then(res => <Car[]> res.json().data)
+                    .then(data => { return data; });
+                    
 
   }
-
-
+  getHeaders() {
+    let headers = new Headers();
+    headers.append('Accept', 'application/json');
+    return headers;
+  }
 
 
   /*mapCar(response:Response): Car[]{
@@ -51,7 +66,10 @@ export class TabpanelService {
    return araba;
  }
  */
-
+  extractId(personData: any) {
+    let extractedId = personData.url.replace('https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json', '').replace('/', '');
+    return parseInt(extractedId);
+  }
   /* return this.http.get('https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json')
    .map(response=>response.json())*/
 
@@ -97,7 +115,7 @@ export class TabpanelService {
     TAB_LIST.splice(0, TAB_LIST.length);
   }
 
-  removeByIndexId(index: number) {
+ removeByIndexId(index: number) {
     var deletedTab = TAB_LIST[index];
     //deletedTab.isSelected=false;
     console.log("index : " + index + " için " + deletedTab.menuName + " siliniyor. deletedTab.isSelected=" + deletedTab.isSelected);
@@ -137,7 +155,7 @@ export class TabpanelService {
         { field: 'year', header: 'Year' },
         { field: 'brand', header: 'Brand' },
         { field: 'color', header: 'Color' },
-        { field: 'fff', header: 'ddd' }
+        { field: 'price', header: 'Price' }
       ];
 
 
@@ -147,7 +165,7 @@ export class TabpanelService {
         { field: 'year', header: 'Ysdfdsfear' },
         { field: 'brand', header: 'sdfdsBrand' },
         { field: 'color', header: 'sdfColor' },
-        { field: 'fff', header: 'ddd' }
+        { field: 'price', header: 'sdfPrice' }
       ];
 
 
