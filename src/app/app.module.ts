@@ -5,15 +5,17 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
+import { FilterService } from './addfilter/addfilterservice'
+import { AddFilterComponent } from './addfilter/addfiltercomponent'
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabpanelComponent } from './tabpanel/tabpanel.component';
 import { TabpanelService} from "./tabpanel/tabpanel.service";
+//import {OverlayPanelModule} from 'primeng/components/overlaypanel';
 
-
-import { PanelMenuModule, TabViewModule, FieldsetModule, ToolbarModule, ButtonModule, DataTableModule,SharedModule } from 'primeng/primeng';
+import { PanelMenuModule,PanelModule, TabViewModule,DialogModule, FieldsetModule,
+   ToolbarModule,DropdownModule,GrowlModule, ButtonModule, DataTableModule,SharedModule, } from 'primeng/primeng';
 
 
 const appRoutes: Routes = [
@@ -33,6 +35,10 @@ const appRoutes: Routes = [
   {
     path: "tabpanel",
     component: TabpanelComponent,
+  },
+  {
+    path:"filter",
+    component:AddFilterComponent,
   }
 ];
 
@@ -41,9 +47,14 @@ const appRoutes: Routes = [
     AppComponent,
     MenuComponent,
     TabpanelComponent,
+    AddFilterComponent,
   ],
   imports: [
     BrowserModule,
+    DialogModule,
+    GrowlModule,
+    DropdownModule,
+    PanelModule,
     BrowserAnimationsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
@@ -52,10 +63,13 @@ const appRoutes: Routes = [
     FieldsetModule,
     ToolbarModule,
     ButtonModule,
-    DataTableModule,SharedModule
+    DataTableModule,SharedModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
-    TabpanelService
+    TabpanelService,
+    FilterService
   ],
   bootstrap: [AppComponent]
 })

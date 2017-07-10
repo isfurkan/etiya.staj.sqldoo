@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FilterList } from '../addfilter/addfilterlist';
+import { FilterService } from '../addfilter/addfilterservice';
+import { Filtre } from '../addfilter/addfilter'
 import { Tab } from "app/tabpanel/Tab";
 import { TabpanelService } from "app/tabpanel/tabpanel.service";
 import { TAB_LIST } from "app/tabpanel/tablist";
 import { Car } from "app/domain/car";
 import {SelectItem} from '../domain/api';
-
+import {OverlayPanelModule} from 'primeng/primeng';
 @Component({
   selector: 'app-tabpanel',
   templateUrl: './tabpanel.component.html',
@@ -16,6 +18,7 @@ import {SelectItem} from '../domain/api';
 
 
 export class TabpanelComponent implements OnInit {
+ // FilterService: any;
 
   tabs: Tab[];
   pmenuId: number;
@@ -24,8 +27,8 @@ export class TabpanelComponent implements OnInit {
 brands: SelectItem[];
 colors: SelectItem[];
  yearFilter: number;
-
-  constructor(private tabpanelService: TabpanelService) {
+display:boolean=false;
+  constructor(private tabpanelService: TabpanelService, private FilterService:FilterService) {
     this.tabs = this.tabpanelService.getTabList();
     
   }
@@ -67,14 +70,30 @@ colors: SelectItem[];
 
     //this.tabs = this.tabpanelService.getTabList();
   }
-
+ showDialog() {
+        this.display = true;
+    }
   onTabClose(event) {
     //this.onTabChange(event);
     this.tabpanelService.removeByIndexId(event.index);
     console.log("kapatıyoruz" + event.index);
   // 
     
-  }
+}
+
+/*public addFilter(menuId?: number){
+    if (menuId) {
+      console.log("menu Id var " + menuId);
+      this.pmenuId = menuId;
+    } else {
+      console.log("menu Id yok");
+      this.pmenuId = 0;
+
+    }
+this.cols = this.tabpanelService.addFilter(this.pmenuId);
+
+}*/
+
  
  onTabChange(event) {
     console.log("index = " + event.index);
@@ -210,6 +229,11 @@ colors: SelectItem[];
       console.log("get cars");
       this.tabpanelService.getSmallCars();
     }
+  }
+
+  filtre(){
+    console.log("filter ın içinde");
+    this.FilterService.CreateFilter();
   }
 }
 

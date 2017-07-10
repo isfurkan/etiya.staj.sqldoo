@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-
+import { FilterList } from '../addfilter/addfilterlist';
+import { FilterService } from '../addfilter/addfilterservice';
+import { Filtre } from '../addfilter/addfilter'
 import { Tab } from "./tab";
 import { TAB_LIST } from "./tablist";
 import { Http, Response } from '@angular/http';
-
 import { Car } from '../domain/car';
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/map';
@@ -11,11 +12,11 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-
-
+import {OverlayPanelModule} from 'primeng/primeng';
 export class CarService {
   dynamicColumns: any[];
   loadedData: {};
+  display:boolean=false;
   private baseUrl: string = 'https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json';
   constructor(private http: Http) {
 
@@ -28,12 +29,19 @@ export class CarService {
 export class TabpanelService {
   dynamicColumns: any[];
   loadedData: {};
+  display: boolean = false;
   private baseUrl: string = 'https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json';
   constructor(private http: Http) {
 
     ;
   }
-  
+  showDialog() {
+        this.display = true;
+    }
+
+    hideDialog() {
+        this.display = false;
+    }
 
   getSmallCars() {
     return this.http.get('https://www.primefaces.org/primeng/assets/showcase/data/cars-medium.json')
@@ -172,5 +180,12 @@ export class TabpanelService {
     }
     return this.dynamicColumns;
   }
+
+ /* public addFilter(menuId: number): any[]{
+    var aydi=menuId;
+    if(aydi==1){
+
+    }
+  }*/
 
 }
