@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FilterList } from '../addfilter/addfilterlist';
-import { FilterService } from '../addfilter/addfilterservice';
+import { FilterService } from '../addfilter/addfilter.service';
 import { Filtre } from '../addfilter/addfilter'
 import { Tab } from "./tab";
 import { TAB_LIST } from "./tablist";
@@ -112,7 +112,7 @@ export class TabpanelService {
       TAB_LIST.push(tab);
     }
   }
-  getMenuId(tab: Tab): number {
+  getMenuId(tab:Tab): number {
     return tab.menuId;
   }
   getTabList(): Tab[] {

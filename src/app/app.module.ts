@@ -4,18 +4,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { FilterService } from './addfilter/addfilterservice'
-import { AddFilterComponent } from './addfilter/addfiltercomponent'
+import {CommonModule} from '@angular/common';
+import { FilterService } from './addfilter/addfilter.service'
+import { AddFilterComponent } from './addfilter/addfilter.component'
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabpanelComponent } from './tabpanel/tabpanel.component';
 import { TabpanelService} from "./tabpanel/tabpanel.service";
 //import {OverlayPanelModule} from 'primeng/components/overlaypanel';
-
-import { PanelMenuModule,PanelModule, TabViewModule,DialogModule, FieldsetModule,
-   ToolbarModule,DropdownModule,GrowlModule, ButtonModule, DataTableModule,SharedModule, } from 'primeng/primeng';
+import { FilterComponent } from "./Filter/filter.component"
+import { PanelMenuModule,SplitButtonModule, InputTextModule, PanelModule, Fieldset, TabViewModule,DialogModule, FieldsetModule, 
+  ToolbarModule,DropdownModule,GrowlModule, ButtonModule, DataTableModule,SharedModule, } from 'primeng/primeng';
 
 
 const appRoutes: Routes = [
@@ -37,14 +37,19 @@ const appRoutes: Routes = [
     component: TabpanelComponent,
   },
   {
-    path:"filter",
+    path:"addfilter",
     component:AddFilterComponent,
+  },
+  {
+    path:"filter",
+    component:FilterComponent,
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
+    FilterComponent,
     MenuComponent,
     TabpanelComponent,
     AddFilterComponent,
@@ -52,8 +57,12 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     DialogModule,
+    SplitButtonModule,
     GrowlModule,
     DropdownModule,
+    CommonModule,
+    InputTextModule,
+    FieldsetModule,
     PanelModule,
     BrowserAnimationsModule,
     HttpModule,
@@ -69,7 +78,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     TabpanelService,
-    FilterService
+    FilterService,
   ],
   bootstrap: [AppComponent]
 })

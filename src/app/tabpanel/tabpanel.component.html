@@ -14,12 +14,24 @@
 
             <div>
 
-                <p-dialog header="Title" [(visible)]="display">
+                <p-dialog header="Creating Filter" [(visible)]="display">
                     <app-addfilter></app-addfilter>
-                </p-dialog>
-
-                <button type="text" (click)="showDialog()" pButton icon="fa-external-link-square" label="Show"></button>
-
+                    
+                    <!--<button type="text" (click)="CreateFilter(tab.menuId)" pButton icon="fa-external-link-square" label="Show"></button>
+               --></p-dialog>
+                <!--<p-dialog header="Mevcut Filtreler"  [(visible)]="goster">
+                    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+                        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                        <h3 class="first">{{filter}}</h3>
+                        <input id="in" type="text" size="30" pInputText [(ngModel)]="text"> {{text}}
+                    </div>
+                </p-dialog>-->
+   
+                <button type="text" (click)="showDialog(tab.menuId)" pButton icon="fa-external-link-square" label="Show"></button>
+             <p-fieldset>
+                    <p-header>Arama Kriterleri</p-header>
+                    <app-filter></app-filter>
+            </p-fieldset>
 
 
                 <button pButton type="button" (click)="refreshGrid(tab.menuId)" label="Refresh"></button>

@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FilterList } from '../addfilter/addfilterlist';
-import { FilterService } from '../addfilter/addfilterservice';
+import { FilterService } from '../addfilter/addfilter.service';
 import { Filtre } from '../addfilter/addfilter'
 import { Tab } from "app/tabpanel/Tab";
 import { TabpanelService } from "app/tabpanel/tabpanel.service";
 import { TAB_LIST } from "app/tabpanel/tablist";
 import { Car } from "app/domain/car";
 import {SelectItem} from '../domain/api';
-import {OverlayPanelModule} from 'primeng/primeng';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-tabpanel',
   templateUrl: './tabpanel.component.html',
@@ -19,6 +19,8 @@ import {OverlayPanelModule} from 'primeng/primeng';
 
 export class TabpanelComponent implements OnInit {
  // FilterService: any;
+model:any={};
+loading=false;
 
   tabs: Tab[];
   pmenuId: number;
@@ -28,13 +30,14 @@ brands: SelectItem[];
 colors: SelectItem[];
  yearFilter: number;
 display:boolean=false;
-  constructor(private tabpanelService: TabpanelService, private FilterService:FilterService) {
+goster:boolean=false;
+  constructor(private router:Router,private tabpanelService: TabpanelService, 
+  private FilterService:FilterService) {
     this.tabs = this.tabpanelService.getTabList();
     
   }
 
   ngOnInit() {
-
     let dashbord = new Tab();
     dashbord.menuId = 0;
     dashbord.menuName = 'Dashbord';
@@ -70,9 +73,18 @@ display:boolean=false;
 
     //this.tabs = this.tabpanelService.getTabList();
   }
- showDialog() {
+ showDialog(menuId) {
+   this.FilterService.createFilter(menuId);
         this.display = true;
     }
+  showToolbar(){
+    this.goster=true;
+  }
+
+  CreateFilter(menuId){
+    this.FilterService.createFilter(menuId);
+
+  }
   onTabClose(event) {
     //this.onTabChange(event);
     this.tabpanelService.removeByIndexId(event.index);
@@ -233,7 +245,7 @@ this.cols = this.tabpanelService.addFilter(this.pmenuId);
 
   filtre(){
     console.log("filter ın içinde");
-    this.FilterService.CreateFilter();
+    this.FilterService.createFilter();
   }
 }
 

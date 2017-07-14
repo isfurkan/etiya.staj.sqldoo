@@ -1,9 +1,8 @@
  export class Filtre{
     menuId:number;
-    LabelName:string;
-    TypeOne:number;
-    TypeTwo:string;
-    FilterName:string;
+    labelName:string;
+    type:string;
+    filterName:string;
     innerWidth:number;
     outerWidth:number;
 
