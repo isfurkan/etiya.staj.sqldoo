@@ -7,16 +7,17 @@ import { Component, OnInit } from '@angular/core';
 //import { Router } from '@angular/router';
 //import {CommonModule} from '@angular/common'
 //import { OverlayPanelModule } from 'primeng/primeng';
-//import { FilterList } from '../addfilter/addfilterlist';
+import { FilterList } from '../addfilter/addfilterlist';
 import { FilterService } from '../addfilter/addfilter.service';
 import { Filtre } from '../addfilter/addfilter'
+import { GetFilterService } from './filter.service'
 //import { Validators, FormControl, FormGroup, FormBuilder } from '@angular/forms';
 //import { Message } from '../../../node_modules/primeng/components/common/api';
 @Component({
     selector: 'app-filter',
     templateUrl: './filter.component.html',
     styleUrls: ['./filter.component.css'],
-    providers: [FilterService]
+    providers: [FilterService,GetFilterService]
 })
 
 export class FilterComponent implements OnInit {
@@ -29,14 +30,21 @@ export class FilterComponent implements OnInit {
     lisim: string;
     display: boolean = false;
 
-    constructor(private filterService: FilterService) {
-
+    constructor(private filterService: FilterService, private getfilterService:GetFilterService) {
+            
     }
 
 
     ngOnInit() {
+        console.log("al veriyi al");
+        this.getfilterService.getFilters().then(tt =>
+            (this.filterService.getFilterList(tt)
+            ) 
 
-        let newFilter = new Filtre()
+        );
+        this.filters = FilterList;
+
+      /*  let newFilter = new Filtre()
         newFilter.filterName = "Default";
         newFilter.labelName = "Defaultt";
         newFilter.menuId = 1;
@@ -46,10 +54,7 @@ export class FilterComponent implements OnInit {
         this.filters = this.filterService.getFilterList();
         console.log("filtre listesi");
         console.log(this.filters );
-        
+        */
     }
 
-    showToolbar() {
-        this.filters = this.filterService.getFilterList();
-    }
 }

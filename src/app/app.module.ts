@@ -14,6 +14,7 @@ import { TabpanelComponent } from './tabpanel/tabpanel.component';
 import { TabpanelService} from "./tabpanel/tabpanel.service";
 //import {OverlayPanelModule} from 'primeng/components/overlaypanel';
 import { FilterComponent } from "./Filter/filter.component"
+import { GetFilterService } from "./filter/filter.service";
 import { PanelMenuModule,SplitButtonModule, InputTextModule, PanelModule, Fieldset, TabViewModule,DialogModule, FieldsetModule, 
   ToolbarModule,DropdownModule,GrowlModule, ButtonModule, DataTableModule,SharedModule, } from 'primeng/primeng';
 
@@ -79,6 +80,7 @@ const appRoutes: Routes = [
   providers: [
     TabpanelService,
     FilterService,
+    GetFilterService,
   ],
   bootstrap: [AppComponent]
 })

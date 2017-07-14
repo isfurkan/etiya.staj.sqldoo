@@ -116,24 +116,7 @@ export class MenuComponent implements OnInit {
             },
             {
                 label: 'Actions',
-                icon: 'fa-gear',
-                items: [
-                    {
-                        label: 'Edit',
-                        icon: 'fa-refresh',
-                        items: [
-                            {label: 'Save', icon: 'fa-save'},
-                            {label: 'Update', icon: 'fa-save'},
-                        ]
-                    },
-                    {
-                        label: 'Other',
-                        icon: 'fa-phone',
-                        items: [
-                            {label: 'Delete', icon: 'fa-minus'}
-                        ]
-                    }
-                ]
+                icon: 'fa-gear'
             }
         
         ];

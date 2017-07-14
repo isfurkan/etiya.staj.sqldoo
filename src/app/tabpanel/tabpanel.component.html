@@ -2,7 +2,7 @@
 
     <p-tabPanel *ngFor="let tab of tabs" header="{{tab.menuName}}" [selected]="tab.isSelected" [closable]="tab.isClosable">
 
-        {{tab.content}} {{tab.menuId}}
+        
 
         <div *ngIf="!tab.isClosable">
 
@@ -16,7 +16,7 @@
 
                 <p-dialog header="Creating Filter" [(visible)]="display">
                     <app-addfilter></app-addfilter>
-                    
+
                     <!--<button type="text" (click)="CreateFilter(tab.menuId)" pButton icon="fa-external-link-square" label="Show"></button>
                --></p-dialog>
                 <!--<p-dialog header="Mevcut Filtreler"  [(visible)]="goster">
@@ -26,18 +26,21 @@
                         <input id="in" type="text" size="30" pInputText [(ngModel)]="text"> {{text}}
                     </div>
                 </p-dialog>-->
-   
-                <button type="text" (click)="showDialog(tab.menuId)" pButton icon="fa-external-link-square" label="Show"></button>
-             <p-fieldset>
+
+
+                <p-fieldset>
                     <p-header>Arama Kriterleri</p-header>
                     <app-filter></app-filter>
-            </p-fieldset>
+                </p-fieldset>
 
 
                 <button pButton type="button" (click)="refreshGrid(tab.menuId)" label="Refresh"></button>
-                <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+                <button type="text" (click)="showDialog(tab.menuId)" pButton icon="fa-external-link-square" label="Show"></button>
+                <button pButton type="button" label="Ara"></button>
+
+                <!-- <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
                     <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
-                    <input #gb type="text" pInputText size="50" placeholder="Global Filter">
+                   <input #gb type="text" pInputText size="50" placeholder="Global Filter">
                 </div>
                 <p-dataTable [value]="cars" [rows]="10" [paginator]="true" [globalFilter]="gb" #dt>
                     <p-header>List of Cars</p-header>
@@ -55,7 +58,7 @@
                         <ng-template pTemplate="filter" let-col>
                         </ng-template>
                     </p-column>
-                </p-dataTable>
+                </p-dataTable>-->
 
             </div>
 
