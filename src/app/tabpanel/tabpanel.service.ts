@@ -58,7 +58,8 @@ export class TabpanelService {
   }
 
 
-  /*mapCar(response:Response): Car[]{
+  /*
+  mapCar(response:Response): Car[]{
     // The response of the API has a results
     // property with the actual results
     return response.json().results.map(this.toCar)
