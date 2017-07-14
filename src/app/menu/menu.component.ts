@@ -70,7 +70,7 @@ return this.http.get('http://localhost:8080/loadDynamicMenuList')
 
 
 
-        this.items = [
+      /*  this.items = [
             {
                 label: 'Menüler',
                 icon: 'fa-file-o',                
@@ -169,16 +169,16 @@ return this.http.get('http://localhost:8080/loadDynamicMenuList')
                 ]
             }
         
-        ];
+        ];*/
 
 
         console.log("al veriyi al");
-        /*this.GetMenuService.getMenus().then(tt =>
+        this.GetMenuService.getMenus().then(tt =>
             (this.loadMenuList(tt)
             )
 
 
-        );*/
+        );
 
     }
     newDialog() {
